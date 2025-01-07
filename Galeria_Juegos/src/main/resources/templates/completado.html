@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel Múltiple</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">	
+</head>
+<body>
+	
+	<header>
+		<nav class="navbar navbar-expand-lg" style="background-color: rgb(141, 103, 205);">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" href="/" style="
+				font-size: 30px;
+			">Galeria del Gamer</a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+		      <ul class="navbar-nav">
+		        <li class="nav-item dropdown">
+		          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+		            Seleccione Categoria
+		          </button>
+		          <ul class="dropdown-menu dropdown-menu-dark">
+		            <li th:each="especifico : ${atr_lista_categorias}">
+						<a class="dropdown-item" th:text="${especifico.nombre}" th:href="@{/jugandoFiltrado(categoriaId=${especifico.id})}"></a>
+					</li>
+		          </ul>
+		        </li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
+	</header>
+	<div style="
+		margin-top: 2%;
+	">
+		<div style="
+			background-color: rgb(128, 128, 255);
+			border-radius: 25px;
+			margin-right: 20%;
+			margin-left: 20%;
+		">
+			<h1 style="display: flex; justify-content: center;"><p style="
+				font-size: 50px;
+				margin-top: 0%;
+				margin-bottom: 0%;
+				">Zona de Juegos Completados</p></h1>
+		</div>
+		
+		<div class="container-cards">
+			<a class="card" th:each="elemento : ${atr_lista_juegos}" th:if="${elemento.estado.id == 2}" th:href="@{/infoJuego(juegoId=${elemento.id})}" style="width: 18rem; background-color: rgb(141, 103, 205);">
+			  <img th:src="@{'/images/juegosPortada/' + ${elemento.foto}}" class="card-img-top" alt="..." style="height: 80%; width: 100%;">
+			    <h5 class="card-title" style="
+				text-align: center;
+				margin-top: 10%;
+				font-family: Roboto;
+				font-size: 35px;
+				" 
+				th:text="${elemento.nombre}"></h5>
+			</a>
+		</div>
+		
+	</div>
+
+	<style>
+		
+		body {
+		    font-family: Roboto;
+		    background-color: rgb(40, 40, 40);
+		    height: 100vh;
+		    margin: 0;
+		}
+		
+		.container-cards {
+		    display: flex; /* Hace que los elementos hijos se alineen horizontalmente */
+		    flex-wrap: wrap; /* Permite que las tarjetas salten a una nueva fila si no caben en la pantalla */
+		    justify-content: center; /* Distribuye el espacio entre las tarjetas */
+		    gap: 20px; /* Añade espacio entre las tarjetas */
+		    margin: 20px;
+			margin-left: 20%;
+			margin-right: 20%;
+		}
+		
+
+		.navbar .btn-custom {
+		    background-color: rgb(141, 103, 205);
+		    color: white;
+		}
+
+		.navbar .dropdown-menu-custom {
+		    background-color: rgb(141, 103, 205);
+		    color: white;
+		}
+
+		.navbar .dropdown-menu-custom .dropdown-item:hover {
+		    background-color: rgb(141, 103, 205);
+		    color: white;
+		}
+
+
+		
+	</style>
+	
+	<script>
+		
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

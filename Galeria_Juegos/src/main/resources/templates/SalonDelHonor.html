@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel Múltiple</title>
+</head>
+<body>
+	<div style="
+		display: flex;
+		flex-direction: column;
+		width: 80%;
+		margin-left: 20%;
+	">
+		<div style="
+			background-color: rgb(128, 255, 0);
+			margin-top: -2%;
+			margin-right: 40%;
+			margin-left: 10%;
+			margin-bottom: 2%;
+			border-radius: 25px;
+		">
+			<h1 style="display: flex; justify-content: center;"><p style="font-family: Roboto; font-size: 50px;">Zona de Juegos en Activo</p></h1>
+		</div>
+		
+	    <div class="carrusel-contenedor">
+	        <button class="flecha izquierda" onclick="moverCarrusel(-1)">&#10094;</button>
+	        
+	        <div class="carrusel">
+	            <div class="imagenes">
+					<img src="images/jugando/diablo4.png" alt="Imagen 1" style="
+						height: 100%;
+						width: 30%;
+						object-fit: cover;
+						margin: 0 10px;
+					">
+					<img src="images/imagen2.jpg" alt="Imagen 2">
+					<img src="images/imagen3.jpg" alt="Imagen 3">
+					<img src="images/imagen4.jpg" alt="Imagen 4">
+					<img src="images/imagen5.jpg" alt="Imagen 5">
+					<img src="images/imagen6.jpg" alt="Imagen 6">
+					<img src="images/imagen7.jpg" alt="Imagen 7">
+
+<!--					<img th:each="elemento : ${atr_lista_juegos}" th:src="@{'/images/jugando/' + ${elemento.foto}}" alt="Imagen 1">-->
+	            </div>
+	        </div>
+	        
+	        <button class="flecha derecha" onclick="moverCarrusel(1)">&#10095;</button>
+	    </div>
+	</div>
+
+	<style>
+		body {
+		    font-family: Arial, sans-serif;
+		    background-color: gray;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    height: 100vh;
+		    margin: 0;
+		}
+
+		.carrusel-contenedor {
+		    position: relative;
+		    width: 80%;
+		    max-width: 1200px; /* Ancho máximo para el carrusel */
+		    overflow: hidden; /* Oculta las imágenes fuera del área visible */
+		    display: flex;
+		    align-items: center;
+		}
+
+		.carrusel {
+		    display: flex;
+		    flex-wrap: nowrap;
+		    transition: transform 0.5s ease;
+		}
+
+		.flecha {
+		    position: absolute;
+		    top: 50%;
+		    transform: translateY(-50%);
+		    background-color: rgba(0, 0, 0, 0.5);
+		    color: white;
+		    border: none;
+		    font-size: 30px;
+		    padding: 10px;
+		    cursor: pointer;
+		    z-index: 1;
+		}
+
+		.izquierda {
+		    left: 0;
+		}
+
+		.derecha {
+		    right: 0;
+		}
+
+		.flecha:hover {
+		    background-color: rgba(0, 0, 0, 0.8);
+		}
+
+	</style>
+	
+	<script>
+		let index = 0;
+		const imagesToShow = 3; // Número de imágenes visibles al mismo tiempo
+		const images = document.querySelectorAll('.imagenes img');
+		const totalImages = images.length;
+
+		function moverCarrusel(direccion) {
+		    // Calcula el número total de veces que se puede mover sin mostrar espacio vacío
+		    const maxIndex = totalImages - imagesToShow;
+		    
+		    // Actualiza el índice de acuerdo a la dirección (1 = derecha, -1 = izquierda)
+		    index += direccion;
+		    
+		    // Evita que el índice sea menor que 0 o mayor que el número máximo de movimientos posibles
+		    if (index < 0) index = 0;
+		    if (index > maxIndex) index = maxIndex;
+		    
+		    // Calcula el desplazamiento en píxeles
+		    const desplazamiento = -index * (100 / imagesToShow); // Porcentaje de desplazamiento
+		    
+		    // Mueve las imágenes
+		    const imagenesContainer = document.querySelector('.carrusel .imagenes');
+		    imagenesContainer.style.transform = `translateX(${desplazamiento}%)`;
+		}
+
+	</script>
+	
+</body>
+</html>

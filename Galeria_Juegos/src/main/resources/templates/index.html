@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Pagina Principal</title>
+</head>
+<body 
+style="
+	background-image: url('images/fondo.png');
+	background-size: cover; /* Hace que la imagen cubra todo el contenedor */
+	background-position: center; /* Centra la imagen en el contenedor */
+	background-repeat: no-repeat; /* Evita que la imagen se repita */
+	">
+	
+	<div 
+	style="
+		margin-top: 3%;
+		margin-left: 20%;
+		margin-right: 20%;
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		background-color: rgb(39, 39, 39);
+		border-radius: 20px;
+	">
+		<div style="padding: 1%;">
+			<h1 style="
+				font-size: 88px;
+				font-weight: bold;
+				background: linear-gradient(90deg, rgb(141, 103, 205), #9580B5);
+				-webkit-background-clip: text;
+				color: transparent;
+				text-transform: uppercase;
+				letter-spacing: 4px;
+				text-align: center;
+				text-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+				transition: transform 0.3s ease-in-out;
+			">Galeria Del Gamer</h1>
+		</div>
+		<div style="
+			display: flex;
+			justify-content: center;
+		">
+			<div class="carrusel">
+			    <div class="imagenes">
+			        <img src="images/imagen1.png" alt="Imagen 1">
+			        <img src="images/imagen2.png" alt="Imagen 2">
+			        <img src="images/imagen3.png" alt="Imagen 3">
+			    </div>
+			</div>
+		</div>
+		
+		<nav class="menu-vertical" style="
+			display: flex;
+			flex-direction: column;
+			width: 400px;
+			margin: 20px;
+			padding: 0;
+		">
+			<button id="botonJugando"><p style="font-size: 30px; margin-bottom: 0%;">Jugando</p></button>
+			<button id="botonCompletados"><p style="font-size: 30px; margin-bottom: 0%;">Completados</p></button>
+			<button id="botonPorJugar"><p style="font-size: 30px; margin-bottom: 0%;">Por Jugar</p></button>
+		</nav>
+	</div>
+	
+	<style>
+		.carrusel {
+		    position: relative;
+		    overflow: hidden;
+		    width: 600px;
+		    height: 400px;
+		}
+
+		.imagenes {
+		    display: flex;
+		    transition: transform 0.5s ease;
+		    width: 100%;
+		}
+
+		.imagenes img {
+			min-width: 100%; /* Asegúrate de que cada imagen ocupe el 100% del ancho del carrusel */
+			height: 100%;    /* Ajusta al 100% de la altura del contenedor del carrusel */
+			object-fit: cover; /* Esto ayuda a mantener la proporción de las imágenes */
+		}
+		
+		button{
+			font-family: Roboto;
+		}
+		
+		.menu-vertical button {
+		    padding: 15px;
+		    margin: 5px 0;
+		    font-size: 16px;
+		    background-color: rgb(141, 103, 205); /* Color del botón */
+		    color: white;
+		    border: none;
+		    cursor: pointer;
+		    border-radius: 5px;
+		    transition: background-color 0.3s ease; /* Suaviza el cambio de color */
+		}
+		
+		.menu-vertical button:hover {
+		    background-color: #7c68a1; /* Color al pasar el mouse */
+		}
+	</style>
+	
+	<script>
+		
+		let index = 0;
+		const images = document.querySelectorAll('.imagenes img');
+		const totalImages = images.length;
+
+		function mostrarImagen(index) {
+		    const desplazamiento = -index * 600; // Cambia 600 por el ancho de tus imágenes
+		    const imagenesContainer = document.querySelector('.imagenes');
+		    imagenesContainer.style.transform = `translateX(${desplazamiento}px)`;
+		}
+
+		function siguienteImagen() {
+		    index = (index + 1) % totalImages; // Cambia al siguiente índice
+		    mostrarImagen(index);
+		}
+
+		// Cambia la imagen cada 3 segundos (3000 ms)
+		setInterval(siguienteImagen, 3000);
+		
+		const boton1 = document.getElementById('botonJugando');
+		const boton2 = document.getElementById('botonCompletados');
+		const boton3 = document.getElementById('botonPorJugar');
+
+		boton1.addEventListener('click', () => {
+		    window.location.href = 'jugando';
+		});
+		
+		boton2.addEventListener('click', () => {
+		    window.location.href = 'completado';
+		});
+		
+		boton3.addEventListener('click', () => {
+		    window.location.href = 'porJugar';
+		});
+		
+	</script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
