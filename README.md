@@ -1,7 +1,7 @@
 # Galeria del Gamer
 Es una plataforma web diseñada para los entusiastas de los videojuegos que desean organizar y gestionar su biblioteca de juegos de manera eficiente. 
 
-Con GamerGallery, puedes guardar tus juegos en distintas categorías según su estado (jugando, completados o por jugar), aplicar filtros avanzados de búsqueda y crear logros personalizados para tu colección.
+Con la Galeria del Gamer, puedes guardar tus juegos en distintas categorías según su estado (jugando, completados o por jugar), aplicar filtros avanzados de búsqueda y crear logros personalizados para tu colección.
 
 ✨ Características principales
 
